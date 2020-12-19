@@ -47,29 +47,30 @@ function renderUserList(userList){
 //need to figure out how to get a photo to render on the album posts
 /* render a single album */
 function renderAlbum(album) {
-    return $(`<div class="album-card">
+    let albumElement=$(`<div class="album-card">
     <header>
       <h3>${album.title}, by ${album.user.name} </h3>
     </header>
     <section class="photo-list">
-      <div class="photo-card"></div>
-      <div class="photo-card"></div>
-      <div class="photo-card"></div>
-      <!-- ... -->
+     
     </section>
   </div>`).data('album',album);
-  
+    let photoListElement = albumElement.find('.photo-List');
+    album.photos.forEach(function (photo){
+      photoListElement.append(renderPhoto(photo))
+    });
+  return albumElement;
     
 };
 /*album.photos.forEach(function(photo){
-    $('.photo-list').append(renderPhoto(photo)) */
-
+    albumElement.find('.photo-list').append(renderPhoto(photo));
+    return albumElement; ???   
 /* render a single photo */
 function renderPhoto(photo) {
     return $(`<div class="photo-card">
-    <a href="${photo.url}">" target="_blank">
-      <img src="${photo.thumbnaillUrl}">
-      <figure>${photo.title}</figure>
+    <a href="${photo.url}>" target="_blank">
+      <img src="${photo.thumbnailUrl}">
+      <figure class="title">${photo.title}</figure>
     </a>
   </div>`).data('photo',photo);
 };
@@ -85,8 +86,6 @@ function renderAlbumList(albumList) {
 };
 
 
-
-fetchUserAlbumList(1).then(renderAlbumList);
 
 
 
@@ -110,12 +109,13 @@ $('#user-list').on('click', '.user-card .load-posts', function () {
 });
 
 $('#user-list').on('click', '.user-card .load-albums', function () {
+
   // load albums for this user
   // render albums for this user
   console.log($(this).closest('.user-card').data('user'));
+  fetchUserAlbumList($(this).closest('.user-card').data('user').id).then(renderAlbumList);
+
+
 });
 
 
-fetchUserAlbumList(4).then(function (albumList) {
-    console.log(albumList);
-  });
