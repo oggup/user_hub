@@ -170,11 +170,11 @@
   .album-card {
     display: grid;
     grid-template-rows: 36px auto;
-    color: #ffe;
+    color: rgb(255, 255, 255);
   }
   
   .album-card header {
-    background: #111;
+    background: rgb(99, 81, 81);
     padding: 12px;
   }
   
@@ -183,15 +183,16 @@
     flex-direction: row;
     align-items: stretch;
     overflow-x: scroll;
-    background: #999;
+    background: rgb(223, 215, 211);
     padding: 12px;
   }
   
   .photo-card {
-    border: 1px solid #ffe;
+    border: 1px solid rgb(233, 217, 211);
     display: flex;
     align-items: stretch;
     background: #fff;
+    
     
   }
 
