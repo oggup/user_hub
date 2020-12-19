@@ -129,15 +129,15 @@
   
   .post-card {
     background: #eee;
-    border: 2px solid #29a;
+    border: 2px solid rgb(211, 211, 211);
   }
   
   .post-card header {
     padding: 8px;
     margin-bottom: 8px;
     border-bottom: 1px solid #777;
-    background: rgb(31, 75, 83);
-    color: #fee;
+    background: rgb(99, 81, 81);
+    color: rgb(255, 255, 255);
   }
   
   .post-card h2 {
@@ -152,7 +152,7 @@
   .post-card footer {
     padding: 8px;
     border-top: 1px solid #777;
-    background: rgb(83, 205, 226);
+    background: rgb(177, 166, 166);
   }
   
   .comment-list h3 {
