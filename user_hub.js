@@ -1,7 +1,8 @@
 const BASE_URL = 'https://jsonplace-univclone.herokuapp.com';
 
-function fetchUsers() {
-    return fetch(`${BASE_URL}/users`)
+
+function fetchData(url) {
+    return fetch(url)
     .then(function(response){
         return response.json();
     })   
@@ -9,6 +10,13 @@ function fetchUsers() {
         console.error("you goofed!")
     });
   };
+
+function fetchUsers() {
+    return fetchData(`${BASE_URL}/users`);
+  };
+function fetchUserAlbumList(userId) {
+    return fetchData(`${ BASE_URL }/users/${userId}/albums?_expand=user&_embed=photos`);
+}
 
  
 
@@ -35,6 +43,55 @@ function renderUserList(userList){
     });
   };
 
+
+//need to figure out how to get a photo to render on the album posts
+/* render a single album */
+function renderAlbum(album) {
+    return $(`<div class="album-card">
+    <header>
+      <h3>${album.title}, by ${album.user.name} </h3>
+    </header>
+    <section class="photo-list">
+      <div class="photo-card"></div>
+      <div class="photo-card"></div>
+      <div class="photo-card"></div>
+      <!-- ... -->
+    </section>
+  </div>`).data('album',album);
+  
+    
+};
+/*album.photos.forEach(function(photo){
+    $('.photo-list').append(renderPhoto(photo)) */
+
+/* render a single photo */
+function renderPhoto(photo) {
+    return $(`<div class="photo-card">
+    <a href="${photo.url}">" target="_blank">
+      <img src="${photo.thumbnaillUrl}">
+      <figure>${photo.title}</figure>
+    </a>
+  </div>`).data('photo',photo);
+};
+
+/* render an array of albums */
+function renderAlbumList(albumList) {
+    $('#app section.active').removeClass('active');    
+    $('#album-list').empty();
+    $('#album-list').addClass('active');
+    albumList.forEach(function (album){
+        $('#album-list').append(renderAlbum(album));
+    })
+};
+
+
+
+fetchUserAlbumList(1).then(renderAlbumList);
+
+
+
+
+
 function bootstrap(){
     fetchUsers()  // <==we could have included this code in fetchUsers, but we plan on reusing the fetch with different url locations
     .then(function(data){
@@ -57,3 +114,8 @@ $('#user-list').on('click', '.user-card .load-albums', function () {
   // render albums for this user
   console.log($(this).closest('.user-card').data('user'));
 });
+
+
+fetchUserAlbumList(4).then(function (albumList) {
+    console.log(albumList);
+  });
