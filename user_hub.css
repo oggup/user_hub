@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 * {
     border: 0;
     margin: 0;
@@ -28,6 +29,7 @@
     font-weight: bold;
     letter-spacing: 3px;
     border-radius: 10px;;
+    font-family: 'Open Sans', sans-serif;
   }
   
   #user-list,
@@ -74,6 +76,7 @@
   .user-card section,
   .user-card footer {
     padding: 8px;
+    
   }
   
   .user-card header,
