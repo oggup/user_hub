@@ -53,7 +53,7 @@
   #app main {
     flex: 1;
     grid-column: 2;
-    background: #eee;
+    background: rgb(161, 140, 140);
     padding: 24px;
     overflow-y: scroll;
   }
@@ -63,7 +63,7 @@
   }
   
   .user-card {
-    background: #aef;
+    background: rgb(247, 232, 185);
     font-family: sans-serif;
   }
   
@@ -75,7 +75,7 @@
   
   .user-card header,
   .user-card footer {
-    background: #8df;
+    background: rgb(194, 165, 146);
     text-align: center;
   }
   
@@ -99,7 +99,9 @@
     background: #fff;
     text-transform: uppercase;
   }
-  
+  .user-card footer button:hover{
+    cursor: pointer;
+  }
   .user-card footer button:not(:last-of-type) {
     margin-bottom: 8px;
   }

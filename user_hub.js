@@ -36,7 +36,7 @@ function fetchUsers() {
   };
 
   function bootstrap(){
-    fetchUsers()
+    fetchUsers()  // <==we could have included this code in fetchUsers, but we plan on reusing the fetch with different url locations
     .then(function(data){
         console.log(data);   
         renderUserList(data);  //code using data as parameter where well call our other functions that uses the fetched data
