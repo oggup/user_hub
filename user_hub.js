@@ -151,8 +151,7 @@ $('#post-list').on('click', '.post-card .toggle-comments', function () {
     .then(function (post) {
       commentListElement.empty();
       post.comments.forEach(function (comment){
-        commentListElement.prepend($(`<h3>${comment.body}</h3><p>
-            ${comment.email}`));
+        commentListElement.prepend($(`<h3>${comment.body}   -<span style = "color:  rgb(3, 71, 26);"> ${comment.email}</span></h3>`));
          })
     toggleComments(postCardElement);
     })
