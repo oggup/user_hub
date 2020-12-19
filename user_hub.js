@@ -12,30 +12,30 @@ function fetchUsers() {
 
  
 
-  function renderUser(user){
-    return $(`<div class="user-card">
-    <header>
-      <h2>${user.name}</h2>
-    </header>
-    <section class="company-info">
-      <p><b>Contact:</b> ${user.email}</p>
-      <p><b>Works for:</b> ${user.company}</p>
-      <p><b>Company creed:</b> "${user.company.catchPhrase}"</p>
-    </section>
-    <footer>
-      <button class="load-posts">POSTS BY ${user.username}</button>
-      <button class="load-albums">ALBUMS BY ${user.username}</button>
-    </footer>
-  </div>`)
+function renderUser(user){
+      return $(`<div class="user-card">
+      <header>
+        <h2>${user.name}</h2>
+      </header>
+      <section class="company-info">
+        <p><b>Contact:</b> ${user.email}</p>
+        <p><b>Works for:</b> ${user.company}</p>
+        <p><b>Company creed:</b> "${user.company.catchPhrase}"</p>
+      </section>
+      <footer>
+        <button class="load-posts">POSTS BY ${user.username}</button>
+        <button class="load-albums">ALBUMS BY ${user.username}</button>
+      </footer>
+    </div>`).data('user',user);
   };
 
-  function renderUserList(userList){
+function renderUserList(userList){
       userList.forEach(function (user){
           $('#user-list').append(renderUser(user));
     });
   };
 
-  function bootstrap(){
+function bootstrap(){
     fetchUsers()  // <==we could have included this code in fetchUsers, but we plan on reusing the fetch with different url locations
     .then(function(data){
         console.log(data);   
@@ -44,3 +44,16 @@ function fetchUsers() {
   };
 
 bootstrap();
+
+
+$('#user-list').on('click', '.user-card .load-posts', function () {
+  // load posts for this user
+  // render posts for this user
+  console.log($(this).closest('.user-card').data('user'));
+});
+
+$('#user-list').on('click', '.user-card .load-albums', function () {
+  // load albums for this user
+  // render albums for this user
+  console.log($(this).closest('.user-card').data('user'));
+});
