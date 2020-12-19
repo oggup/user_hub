@@ -19,7 +19,7 @@ function renderUser(user){
       </header>
       <section class="company-info">
         <p><b>Contact:</b> ${user.email}</p>
-        <p><b>Works for:</b> ${user.company}</p>
+        <p><b>Works for:</b> ${user.company.name}</p>
         <p><b>Company creed:</b> "${user.company.catchPhrase}"</p>
       </section>
       <footer>
